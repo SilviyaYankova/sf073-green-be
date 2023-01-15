@@ -15,10 +15,16 @@ import javax.annotation.PostConstruct;
 public class CinemaProperties {
     private int totalRows;
     private int totalColumns;
+    private int frontRows;
+    private int frontRowsPrice;
+    private int backRowsPrice;
 
     @PostConstruct
     void logLoaded() {
         log.info("== totalRows = {}", totalRows);
         log.info("== totalColumns = {}", totalColumns);
+        log.info("== frontRows = {}", frontRows);
+        log.info("== frontRowsPrice = {}", frontRowsPrice);
+        log.info("== backRowsPrice = {}", backRowsPrice);
     }
 }

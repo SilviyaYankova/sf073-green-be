@@ -19,7 +19,6 @@ public class SeatRepository {
 
     @PostConstruct
     public void init() {
-
         seats = new ArrayList<>();
         for (int i = 1; i <= properties.getTotalRows(); i++) {
             for (int j = 1; j <= properties.getTotalColumns(); j++) {
