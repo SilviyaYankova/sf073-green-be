@@ -7,8 +7,12 @@ import lombok.Setter;
 
 @Getter@Setter@NoArgsConstructor
 @AllArgsConstructor
-public class Seat {
+public class SeatCoordinatesRequest {
     int row;
     int column;
-    boolean isSold;
+
+    public SeatCoordinatesRequest(Seat seat) {
+        this.row = seat.getRow();
+        this.column = seat.getColumn();
+    }
 }
