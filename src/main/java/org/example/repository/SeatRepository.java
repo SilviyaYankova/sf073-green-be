@@ -25,9 +25,13 @@ public class SeatRepository {
         seats = new ArrayList<>();
         for (int i = 1; i <= properties.getTotalRows(); i++) {
             for (int j = 1; j <= properties.getTotalColumns(); j++) {
-                seats.add(new Seat(i, j, false));
+                seats.add(new Seat(i, j, false, null));
             }
         }
+    }
+
+    public List<Seat> getSeats() {
+        return seats;
     }
 
     public List<SeatCoordinatesRequest> getAvailableSeats() {
@@ -45,10 +49,10 @@ public class SeatRepository {
     }
 
     public void markAsSold(SeatCoordinatesRequest seat) {
-          seats.stream()
-               .filter(s -> s.getRow() == seat.getRow() &&
-                       s.getColumn() == seat.getColumn())
-                  .findFirst()
-                  .ifPresent(s -> s.setSold(true));
+        seats.stream()
+             .filter(s -> s.getRow() == seat.getRow() &&
+                     s.getColumn() == seat.getColumn())
+             .findFirst()
+             .ifPresent(s -> s.setSold(true));
     }
 }

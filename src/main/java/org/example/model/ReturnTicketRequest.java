@@ -3,13 +3,10 @@ package org.example.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter@Setter@NoArgsConstructor
+@Getter
+@NoArgsConstructor
 @AllArgsConstructor
-public class Seat {
-    int row;
-    int column;
-    boolean isSold;
+public class ReturnTicketRequest {
     String token;
 }
