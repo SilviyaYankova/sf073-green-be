@@ -7,11 +7,11 @@ import lombok.Setter;
 
 @Getter@Setter@NoArgsConstructor
 @AllArgsConstructor
-public class SeatCoordinatesRequest {
+public class SeatCoordinates {
     int row;
     int column;
 
-    public SeatCoordinatesRequest(Seat seat) {
+    public SeatCoordinates(Seat seat) {
         this.row = seat.getRow();
         this.column = seat.getColumn();
     }
