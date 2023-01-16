@@ -5,12 +5,13 @@ import org.example.configuration.CinemaProperties;
 import org.example.exeption.SeatOutOfBounceException;
 import org.example.exeption.TicketAlreadySoldException;
 import org.example.exeption.WrongToken;
-import org.example.model.CinemaRoom;
-import org.example.model.Seat;
-import org.example.model.SeatCoordinates;
-import org.example.model.dto.ReturnedTicketDto;
-import org.example.model.dto.SeatDTO;
-import org.example.model.dto.SoldTicketDto;
+import org.example.model.dto.CinemaRoomResponse;
+import org.example.model.entity.SeatEntity;
+import org.example.model.dto.SeatCoordinatesRequest;
+import org.example.model.dto.ReturnedTicketResponse;
+import org.example.model.dto.SeatResponse;
+import org.example.model.dto.SoldTicketResponse;
+import org.example.model.dto.StatsResponse;
 import org.example.repository.SeatRepository;
 import org.example.service.CinemaService;
 import org.springframework.stereotype.Service;
@@ -24,10 +25,10 @@ public class CinemaServiceImpl implements CinemaService {
     final private CinemaProperties properties;
 
     @Override
-    public CinemaRoom getCinemaRoomInfo() {
-        return new CinemaRoom(properties.getTotalRows(),
-                              properties.getTotalColumns(),
-                              seatRepository.getAvailableSeats()
+    public CinemaRoomResponse getCinemaRoomInfo() {
+        return new CinemaRoomResponse(properties.getTotalRows(),
+                                      properties.getTotalColumns(),
+                                      seatRepository.getAvailableSeats()
                                             .stream()
                                             .map(this::addPrice)
                                             .collect(Collectors.toList())
@@ -35,7 +36,7 @@ public class CinemaServiceImpl implements CinemaService {
     }
 
     @Override
-    public SoldTicketDto purchase(SeatCoordinates seat) {
+    public SoldTicketResponse purchase(SeatCoordinatesRequest seat) {
         if (seat.getRow() < 1 || seat.getRow() > properties.getTotalRows() ||
                 seat.getColumn() < 1 || seat.getColumn() > properties.getTotalColumns()) {
             throw new SeatOutOfBounceException();
@@ -44,28 +45,40 @@ public class CinemaServiceImpl implements CinemaService {
             throw new TicketAlreadySoldException();
         }
         int price = calculatePrice(seat);
-        Seat ticket = seatRepository.sell(seat, price);
-        return new SoldTicketDto(ticket);
+        SeatEntity ticket = seatRepository.sell(seat, price);
+        return new SoldTicketResponse(ticket);
     }
 
     @Override
-    public ReturnedTicketDto returnTicket(String token) {
-        Seat seat = seatRepository.getSeatByToken(token).orElseThrow(WrongToken::new);
-        ReturnedTicketDto returnedTicket = new ReturnedTicketDto(
-                new SeatDTO(seat.getRow(), seat.getColumn(), seat.getSellPrice()));
-        SeatCoordinates seatCoordinates = new SeatCoordinates(seat);
-        seatRepository.setAsAvailable(seatCoordinates);
+    public ReturnedTicketResponse returnTicket(String token) {
+        SeatEntity seatEntity = seatRepository.getSeatByToken(token).orElseThrow(WrongToken::new);
+        ReturnedTicketResponse returnedTicket = new ReturnedTicketResponse(
+                new SeatResponse(seatEntity.getRow(), seatEntity.getColumn(), seatEntity.getSellPrice()));
+        SeatCoordinatesRequest seatCoordinatesRequest = new SeatCoordinatesRequest(seatEntity);
+        seatRepository.setAsAvailable(seatCoordinatesRequest);
         return returnedTicket;
     }
 
-    private int calculatePrice(SeatCoordinates seat) {
+    @Override
+    public StatsResponse calcStats() {
+        int currentIncome = seatRepository.totalIncome();
+        int numberOfAvailableSeats = seatRepository.getAvailableSeats().size();
+        int numberOfPurchasedTickets = seatRepository.soldTicketsCount();
+        StatsResponse statsResponse = new StatsResponse();
+        statsResponse.setCurrentIncome(currentIncome);
+        statsResponse.setNumberOfAvailableSeats(numberOfAvailableSeats);
+        statsResponse.setNumberOfPurchasedTickets(numberOfPurchasedTickets);
+        return statsResponse;
+    }
+
+    private int calculatePrice(SeatCoordinatesRequest seat) {
         return seat.getRow() <= properties.getFrontRows()
                 ? properties.getFrontRowsPrice()
                 : properties.getBackRowsPrice();
     }
 
-    private SeatDTO addPrice(SeatCoordinates seat) {
+    private SeatResponse addPrice(SeatCoordinatesRequest seat) {
         int price = calculatePrice(seat);
-        return new SeatDTO(seat.getRow(), seat.getColumn(), price);
+        return new SeatResponse(seat.getRow(), seat.getColumn(), price);
     }
 }

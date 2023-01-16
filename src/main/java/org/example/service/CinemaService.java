@@ -1,14 +1,17 @@
 package org.example.service;
 
-import org.example.model.CinemaRoom;
-import org.example.model.SeatCoordinates;
-import org.example.model.dto.ReturnedTicketDto;
-import org.example.model.dto.SoldTicketDto;
+import org.example.model.dto.CinemaRoomResponse;
+import org.example.model.dto.SeatCoordinatesRequest;
+import org.example.model.dto.ReturnedTicketResponse;
+import org.example.model.dto.SoldTicketResponse;
+import org.example.model.dto.StatsResponse;
 
 public interface CinemaService {
-    CinemaRoom getCinemaRoomInfo();
+    CinemaRoomResponse getCinemaRoomInfo();
 
-    SoldTicketDto purchase(SeatCoordinates seat);
+    SoldTicketResponse purchase(SeatCoordinatesRequest seat);
 
-    ReturnedTicketDto returnTicket(String token);
+    ReturnedTicketResponse returnTicket(String token);
+
+    StatsResponse calcStats();
 }

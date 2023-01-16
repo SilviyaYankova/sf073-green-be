@@ -1,16 +1,14 @@
-package org.example.model;
+package org.example.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.example.model.dto.SeatDTO;
 
 import java.util.List;
 
-
 @Getter
 @AllArgsConstructor
-public class CinemaRoom {
+public class CinemaRoomResponse {
     private int totalRows;
     private int totalColumns;
-    private List<SeatDTO> availableSeats;
+    private List<SeatResponse> availableSeats;
 }

@@ -1,4 +1,4 @@
-package org.example.model;
+package org.example.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,13 +7,13 @@ import lombok.Setter;
 
 @Getter@Setter@NoArgsConstructor
 @AllArgsConstructor
-public class Seat {
+public class SeatEntity {
     int row;
     int column;
     Integer sellPrice;
     String token;
 
-    public Seat(int row, int column) {
+    public SeatEntity(int row, int column) {
         this.row = row;
         this.column = column;
     }

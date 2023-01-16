@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReturnedTicketDto {
-    SeatDTO returnedTicket;
+public class ReturnedTicketResponse {
+    SeatResponse returnedTicket;
 }
