@@ -5,18 +5,17 @@ import org.example.services.impl.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-
+@EnableMethodSecurity
 @RequiredArgsConstructor
 @Configuration
 public class SecurityConfiguration {
     final RestAuthenticationEntryPoint restAuthenticationEntryPoint;
     final UserDetailsServiceImpl userDetailsServiceImpl;
-    final PasswordEncoder passwordEncoder;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

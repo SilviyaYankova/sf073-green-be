@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.example.models.UserDetailsMixin;
+import org.example.models.enums.RoleEnum;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Getter
@@ -14,7 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class UserEntity implements UserDetails, UserDetailsMixin {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
@@ -24,6 +25,11 @@ public class UserEntity implements UserDetails, UserDetailsMixin {
     String username;
     @Column
     String password;
+    @Column
+    @Enumerated(value = EnumType.STRING)
+    RoleEnum role;
+    @Column
+    boolean isAccountLocked;
 
     public UserEntity(String name, String username) {
         this.name = name;

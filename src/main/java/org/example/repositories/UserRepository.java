@@ -12,4 +12,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
     @Query("select u from UserEntity as u order by u.id")
     List<UserEntity> findAll();
+
+    long count();
 }

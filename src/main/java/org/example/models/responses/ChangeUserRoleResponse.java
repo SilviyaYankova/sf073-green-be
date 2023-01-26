@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class RegisterUserResponse {
+public class ChangeUserRoleResponse {
     Long id;
     String name;
     String username;
