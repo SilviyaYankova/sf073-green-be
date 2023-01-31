@@ -5,9 +5,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter@Setter@NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 @AllArgsConstructor
-public class TransactionResponse {
-    String result;
-    String info;
+public class SuspiciousIPResponse {
+    Long id;
+    String ip;
 }

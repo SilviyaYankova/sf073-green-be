@@ -2,12 +2,11 @@ package org.example.models.responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter@Setter@NoArgsConstructor
+@Getter
+@Setter
 @AllArgsConstructor
-public class TransactionResponse {
-    String result;
-    String info;
+public class DeleteSuspiciousIPResponse {
+    String status;
 }
