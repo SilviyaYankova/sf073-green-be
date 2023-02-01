@@ -56,9 +56,4 @@ public class CardServiceImpl implements CardService {
                                    .map(c -> new CardResponse(c.getId(), c.getNumber()))
                                    .collect(Collectors.toList());
     }
-
-    @Override
-    public boolean cardIsBlacklisted(String number) {
-        return stolenCardRepository.findByNumber(number).isPresent();
-    }
 }

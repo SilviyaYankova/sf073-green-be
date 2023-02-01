@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,4 +19,8 @@ public class TransactionAmountRequest {
     String ip;
     @NotNull
     String number;
+    @NotNull
+    String region;
+    @NotNull
+    LocalDateTime date;
 }

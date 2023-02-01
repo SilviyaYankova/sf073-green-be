@@ -13,6 +13,4 @@ public interface CardService {
     DeleteCardResponse delete(String number);
 
     List<CardResponse> getAll();
-
-    boolean cardIsBlacklisted(String number);
 }
