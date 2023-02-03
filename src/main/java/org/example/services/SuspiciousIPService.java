@@ -6,7 +6,7 @@ import org.example.models.responses.SuspiciousIPResponse;
 
 import java.util.List;
 
-public interface IPService {
+public interface SuspiciousIPService {
     SuspiciousIPResponse addSuspiciousIP(String ip);
 
     boolean ipIsBlacklisted(String ip);

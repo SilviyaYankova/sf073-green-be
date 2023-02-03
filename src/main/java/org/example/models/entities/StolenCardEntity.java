@@ -14,7 +14,7 @@ import lombok.Setter;
 @Table(name = "stolen_cards")
 public class StolenCardEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue()
     Long id;
     @Column
     String number;

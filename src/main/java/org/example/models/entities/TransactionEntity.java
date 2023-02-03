@@ -23,12 +23,16 @@ public class TransactionEntity {
     @Column
     Long amount;
     @Column
-    String ip;
-    @Column
     String number;
+    @Column
+    String ip;
     @Column
     @Enumerated(value = EnumType.STRING)
     RegionEnum region;
     @Column
     LocalDateTime date;
+    @Column
+    String result;
+    @Column
+    String feedback;
 }

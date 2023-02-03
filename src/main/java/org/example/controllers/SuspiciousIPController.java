@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.models.requests.SuspiciousIPRequest;
 import org.example.models.responses.DeleteSuspiciousIPResponse;
 import org.example.models.responses.SuspiciousIPResponse;
-import org.example.services.IPService;
+import org.example.services.SuspiciousIPService;
 import org.example.services.UserService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -13,25 +13,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @PreAuthorize("hasRole('SUPPORT')")
-@RequestMapping("/api/antifraud")
+@RequestMapping("/api/antifraud/suspicious-ip")
 @RequiredArgsConstructor
 @RestController
 public class SuspiciousIPController {
-    final IPService IPService;
+    final SuspiciousIPService SuspiciousIPService;
     final UserService userService;
 
-    @PostMapping("/suspicious-ip")
+    @PostMapping()
     SuspiciousIPResponse addSuspiciousIPs(@RequestBody @Valid SuspiciousIPRequest request) {
-        return IPService.addSuspiciousIP(request.getIp());
+        return SuspiciousIPService.addSuspiciousIP(request.getIp());
     }
 
-    @DeleteMapping("suspicious-ip/{ip}")
+    @DeleteMapping("/{ip}")
     DeleteSuspiciousIPResponse delete(@PathVariable String ip) {
-        return IPService.delete(ip);
+        return SuspiciousIPService.delete(ip);
     }
 
-    @GetMapping("/suspicious-ip")
+    @GetMapping()
     List<SuspiciousIPResponse> get() {
-        return IPService.getAll();
+        return SuspiciousIPService.getAll();
     }
 }

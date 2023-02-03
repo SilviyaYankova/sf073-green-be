@@ -15,7 +15,7 @@ import org.example.models.enums.RoleEnum;
 @Table(name = "users")
 public class UserEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue()
     Long id;
     @Column
     String name;

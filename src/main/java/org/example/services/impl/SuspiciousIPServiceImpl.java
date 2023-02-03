@@ -7,7 +7,7 @@ import org.example.models.enums.RoleEnum;
 import org.example.models.responses.DeleteSuspiciousIPResponse;
 import org.example.models.responses.SuspiciousIPResponse;
 import org.example.repositories.SuspiciousIPRepository;
-import org.example.services.IPService;
+import org.example.services.SuspiciousIPService;
 import org.example.services.UserService;
 import org.example.services.Validator;
 import org.springframework.http.HttpStatus;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
-public class IPServiceImpl implements IPService {
+public class SuspiciousIPServiceImpl implements SuspiciousIPService {
     final SuspiciousIPRepository suspiciousIPRepository;
     final UserService userService;
     final Validator validator;

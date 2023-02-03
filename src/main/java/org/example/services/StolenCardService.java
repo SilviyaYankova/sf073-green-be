@@ -5,7 +5,7 @@ import org.example.models.responses.DeleteCardResponse;
 
 import java.util.List;
 
-public interface CardService {
+public interface StolenCardService {
     CardResponse addCard(String cardNumber);
 
     boolean cardIsStolen(String number);

@@ -5,7 +5,7 @@ import org.example.models.entities.StolenCardEntity;
 import org.example.models.responses.CardResponse;
 import org.example.models.responses.DeleteCardResponse;
 import org.example.repositories.StolenCardRepository;
-import org.example.services.CardService;
+import org.example.services.StolenCardService;
 import org.example.services.Validator;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
-public class CardServiceImpl implements CardService {
+public class StolenCardServiceImpl implements StolenCardService {
     final StolenCardRepository stolenCardRepository;
     final Validator validator;
 

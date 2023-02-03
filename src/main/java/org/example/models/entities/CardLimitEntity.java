@@ -6,16 +6,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "suspicious_IPs")
-public class SuspiciousIPEntity {
+@Table(name = "cards_limit")
+public class CardLimitEntity {
     @Id
-    @GeneratedValue()
+    @GeneratedValue
     Long id;
     @Column
-    String ip;
+    String number;
+    @Column
+    long allowed;
+    @Column
+    long manual;
 }
