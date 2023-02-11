@@ -1,11 +1,14 @@
 package org.example.models.entities;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.example.models.enums.RoleEnum;
+
+
 
 @Getter
 @Setter
@@ -15,7 +18,7 @@ import org.example.models.enums.RoleEnum;
 @Table(name = "users")
 public class UserEntity {
     @Id
-    @GeneratedValue()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     @Column
     String name;
