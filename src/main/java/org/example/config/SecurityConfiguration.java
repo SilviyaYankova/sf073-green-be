@@ -30,14 +30,16 @@ public class SecurityConfiguration {
         http
                 .httpBasic(c -> c.authenticationEntryPoint(restAuthenticationEntryPoint))
                 .csrf(AbstractHttpConfigurer::disable)
-                .cors(Customizer.withDefaults())
                 .authorizeHttpRequests((auth) -> auth
                         .requestMatchers(HttpMethod.POST, "/api/auth/user").permitAll()
                         .requestMatchers("/management/**").permitAll()
                         .requestMatchers("/api/**").authenticated()
                         .anyRequest().denyAll()
                 )
+                .cors().configurationSource(corsConfigurationSource())
+                .and()
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+
         return http.build();
     }
     @Bean
