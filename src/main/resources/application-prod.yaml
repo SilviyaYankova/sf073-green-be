@@ -16,10 +16,10 @@ spring:
     username: ${PROD_DB_USERNAME}
     password: ${PROD_DB_PASSWORD}
     name: ${PROD_DB_SCHEMA_NAME}
-    type: com.zaxxer.hikari.HikariDataSource
-    hikari:
-      poolName: Hikari
-      auto-commit: false
+#    type: com.zaxxer.hikari.HikariDataSource
+#    hikari:
+#      poolName: Hikari
+#      auto-commit: false
     jpa:
       database-platform: org.hibernate.dialect.FixedPostgreSQL10Dialect
       hibernate:

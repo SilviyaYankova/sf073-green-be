@@ -15,7 +15,7 @@ spring:
   application:
     name: sf073-green-be
   profiles:
-    active: spring.profiles.prod
+    active: prod
 
   data:
     jpa:
