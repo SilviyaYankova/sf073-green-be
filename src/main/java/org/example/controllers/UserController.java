@@ -4,7 +4,9 @@ package org.example.controllers;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.example.models.entities.UserEntity;
 import org.example.models.requests.ChangeUserAccessRequest;
+import org.example.models.requests.LoginUserRequest;
 import org.example.models.requests.RegisterUserRequest;
 import org.example.models.responses.ChangeUserAccessResponse;
 import org.example.models.responses.DeleteUserResponse;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RequiredArgsConstructor
@@ -28,6 +31,11 @@ public class UserController {
     @PostMapping("/user")
     RegisterUserResponse register(@RequestBody @Valid RegisterUserRequest request) {
         return userService.register(request.getName(), request.getUsername(), request.getPassword());
+    }
+
+    @PostMapping("/login")
+    Optional<UserEntity> login(@RequestBody LoginUserRequest request) {
+        return userService.findUserByUsername(request.getUsername());
     }
 
     @PreAuthorize("hasAnyRole('ADMINISTRATOR', 'SUPPORT')")
