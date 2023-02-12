@@ -24,3 +24,7 @@ spring:
       database-platform: org.hibernate.dialect.FixedPostgreSQL10Dialect
       hibernate:
         ddl-auto: update
+
+  sql:
+    init:
+      mode: always
