@@ -45,7 +45,7 @@ public class SecurityConfiguration {
     @Bean
     CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.setAllowedOrigins(List.of("https://sf073-green-fe.netlify.app/**", "http://localhost:3000/**"));
+        corsConfiguration.setAllowedOrigins(List.of("https://sf073-green-fe.netlify.app/", "http://localhost:3000/"));
         corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         corsConfiguration.setAllowedHeaders(List.of("*"));
         corsConfiguration.setAllowCredentials(true);
