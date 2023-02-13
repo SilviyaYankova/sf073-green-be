@@ -1,0 +1,12 @@
+
+CREATE DATABASE antifraud_db
+CREATE TYPE role_type AS ENUM ('ADMINISTRATOR', 'SUPPORT', 'MERCHANT')
+#user
+CREATE TABLE IF NOT EXISTS users(
+id SERIAL PRIMARY KEY,
+name VARCHAR(100) NOT NULL,
+username VARCHAR(100) NOT NULL,
+password VARCHAR(255) NOT NULL,
+role role_type NOT NULL,
+is_account_locked BOOLEAN NOT NULL
+)

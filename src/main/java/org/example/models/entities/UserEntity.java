@@ -29,7 +29,7 @@ public class UserEntity {
     @Column
     @Enumerated(value = EnumType.STRING)
     RoleEnum role;
-    @Column
+    @Column(name = "is_account_locked")
     boolean isAccountLocked;
 
     public UserEntity(String name, String username) {
