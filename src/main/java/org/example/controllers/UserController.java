@@ -6,11 +6,10 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.models.entities.UserEntity;
 import org.example.models.requests.ChangeUserAccessRequest;
+import org.example.models.requests.ChangeUserRoleRequest;
 import org.example.models.requests.LoginUserRequest;
 import org.example.models.requests.RegisterUserRequest;
-import org.example.models.responses.ChangeUserAccessResponse;
-import org.example.models.responses.DeleteUserResponse;
-import org.example.models.responses.RegisterUserResponse;
+import org.example.models.responses.*;
 import org.example.services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -40,7 +39,7 @@ public class UserController {
 
     @PreAuthorize("hasAnyRole('ADMINISTRATOR', 'SUPPORT')")
     @GetMapping("/list")
-    List<RegisterUserResponse> getAllUsers() {
+    List<GetAllUsersResponse> getAllUsers() {
         return userService.getAllUsers();
     }
 
@@ -55,6 +54,12 @@ public class UserController {
     ChangeUserAccessResponse access(@RequestBody ChangeUserAccessRequest request) {
         ChangeUserAccessResponse response = userService.changeAccess(request.getUsername(), request.getOperation());
         return new ChangeUserAccessResponse(response.getStatus());
+    }
+
+    @PreAuthorize("hasRole('ADMINISTRATOR')")
+    @PutMapping("/role")
+    ChangeUserRoleResponse role(@RequestBody ChangeUserRoleRequest request) {
+        return userService.changeRole(request.getUsername(), request.getRole());
     }
 }
 
