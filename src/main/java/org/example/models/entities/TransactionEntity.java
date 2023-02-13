@@ -31,7 +31,7 @@ public class TransactionEntity {
     @Column
     @Enumerated(value = EnumType.STRING)
     RegionEnum region;
-    @Column
+    @Column(name = "created_at")
     LocalDateTime date;
     @Column
     String result;
