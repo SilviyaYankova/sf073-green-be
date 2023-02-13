@@ -14,7 +14,7 @@ import lombok.Setter;
 @Table(name = "suspicious_ip")
 public class SuspiciousIPEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     @Column
     String ip;

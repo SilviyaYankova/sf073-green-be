@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 @Table(name = "transactions_history")
 public class TransactionEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     @Column
     Long amount;

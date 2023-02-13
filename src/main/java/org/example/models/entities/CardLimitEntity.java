@@ -18,7 +18,7 @@ import lombok.Setter;
 @Table(name = "cards_limit")
 public class CardLimitEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     @Column
     String number;
