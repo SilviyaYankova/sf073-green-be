@@ -24,7 +24,7 @@ feedback VARCHAR(255) NOT NULL
 --suspiciousIp entity
 CREATE TABLE IF NOT EXISTS suspicious_ip(
 id SERIAL PRIMARY KEY,
-ip VARCHAR(20) NOT NULL,
+ip VARCHAR(20) NOT NULL
 );
 
 --cardLimit entity
