@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.models.entities.UserEntity;
 import org.example.models.requests.ChangeUserAccessRequest;
+import org.example.models.requests.ChangeUserRoleRequest;
 import org.example.models.requests.LoginUserRequest;
 import org.example.models.requests.RegisterUserRequest;
 import org.example.models.responses.*;
@@ -66,6 +67,12 @@ public class UserController {
     ChangeUserAccessResponse access(@RequestBody ChangeUserAccessRequest request) {
         ChangeUserAccessResponse response = userService.changeAccess(request.getUsername(), request.getOperation());
         return new ChangeUserAccessResponse(response.getStatus());
+    }
+
+    @PreAuthorize("hasRole('ADMINISTRATOR')")
+    @PutMapping("/role")
+    ChangeUserRoleResponse role(@RequestBody ChangeUserRoleRequest request) {
+        return userService.changeRole(request.getUsername(), request.getRole());
     }
 }
 
