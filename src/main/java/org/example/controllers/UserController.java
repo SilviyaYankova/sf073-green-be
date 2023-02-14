@@ -39,7 +39,12 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         LoginUserResponse loginUserResponse = new LoginUserResponse(
-                request.getUsername(), request.getPassword(), userEntity.get().getRole().name()
+                userEntity.get().getId(),
+                userEntity.get().getName(),
+                userEntity.get().getUsername(),
+                request.getPassword(),
+                userEntity.get().getRole().name(),
+                userEntity.get().isAccountLocked()
         );
         return new ResponseEntity<>(loginUserResponse, HttpStatus.OK);
     }
