@@ -3,10 +3,7 @@ package org.example.services.impl;
 import lombok.RequiredArgsConstructor;
 import org.example.models.entities.UserEntity;
 import org.example.models.enums.RoleEnum;
-import org.example.models.responses.ChangeUserAccessResponse;
-import org.example.models.responses.ChangeUserRoleResponse;
-import org.example.models.responses.DeleteUserResponse;
-import org.example.models.responses.RegisterUserResponse;
+import org.example.models.responses.*;
 import org.example.repositories.UserRepository;
 import org.example.services.UserService;
 import org.springframework.http.HttpStatus;
@@ -55,11 +52,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<RegisterUserResponse> getAllUsers() {
+    public List<GetAllUsersResponse> getAllUsers() {
         return userRepository
                 .findAll()
                 .stream()
-                .map((a) -> new RegisterUserResponse(a.getId(), a.getName(), a.getUsername(), a.getRole().name()))
+                .map((a) -> new GetAllUsersResponse(a.getId(), a.getName(), a.getUsername(), a.getRole().name(), a.isAccountLocked()))
                 .collect(Collectors.toList());
     }
 
